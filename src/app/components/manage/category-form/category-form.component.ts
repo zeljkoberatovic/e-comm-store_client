@@ -57,12 +57,14 @@ export class CategoryFormComponent implements OnInit {
   update() {
     if (this.id && this.name) {
       this.categoryService.updateCategory(this.id, this.name).subscribe(() => {
-        alert("Category updated successfully!"); // Promenjena poruka za ažuriranje
+        alert("Category updated successfully!"); 
         this.router.navigateByUrl("/admin/categories");
       });
     } else {
       console.error('ID or name is missing. Cannot update.');
     }
   }
+
+  
   
 }

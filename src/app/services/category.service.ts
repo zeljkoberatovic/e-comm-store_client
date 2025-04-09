@@ -25,5 +25,8 @@ export class CategoryService {
     return this.http.put("http://localhost:3000/category/" + id, { name: name });
   }
 
+  deleteCategoryById(id: string) {
+    return this.http.delete("http://localhost:3000/category/" + id);
+  }
 
 }
