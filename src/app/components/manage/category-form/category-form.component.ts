@@ -1,40 +1,68 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { Location } from '@angular/common';
 import { CategoryService } from '../../../services/category.service';
-import { Router } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-category-form',
+  standalone: true,
   imports: [
     FormsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    CommonModule,
   ],
-
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.scss'
 })
-export class CategoryFormComponent {
-  constructor(private location: Location) {}  // Injektovanje Location servis
+export class CategoryFormComponent implements OnInit {
   categoryService = inject(CategoryService);
   router = inject(Router);
-  name!: string;
+  location = inject(Location);
+  private route = inject(ActivatedRoute);
 
-  // Funkcija koja se poziva kada se klikne na dugme "Back"
-  goBack() {
-    this.location.back(); // Vraća korisnika na prethodnu stranicu
+  name!: string;
+  isEdit = false;
+  id!: string;
+
+  ngOnInit() {
+    const { id } = this.route.snapshot.params;
+
+    if (id) {
+      this.isEdit = true;
+      this.id = id; 
+      this.categoryService.getCategoryById(id).subscribe((result: any) => {
+        //console.log(result);
+        this.name = result.name;
+      });
+    }
   }
+
+  goBack() {
+    this.location.back();
+  }
+
   add() {
-    //console.log(this.name);
-    this.categoryService.addCategory(this.name).subscribe((result: any) => {
+    this.categoryService.addCategory(this.name).subscribe(() => {
       alert("Category added successfully!");
       this.router.navigateByUrl("/admin/categories");
-    })
+    });
   }
 
+  update() {
+    if (this.id && this.name) {
+      this.categoryService.updateCategory(this.id, this.name).subscribe(() => {
+        alert("Category updated successfully!"); // Promenjena poruka za ažuriranje
+        this.router.navigateByUrl("/admin/categories");
+      });
+    } else {
+      console.error('ID or name is missing. Cannot update.');
+    }
+  }
+  
 }

@@ -17,7 +17,7 @@ export const routes: Routes = [
         component: CategoryFormComponent,
     },
     {
-        path: 'admin/category/:id',
+        path: 'admin/categories/:id',
         component: CategoryFormComponent,
     },
     
