@@ -2,10 +2,10 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { CategoryService } from '../../../services/category.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 
 
 @Component({
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     MatInputModule,
     MatButtonModule,
-    CommonModule,
+    CommonModule
   ],
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.scss'

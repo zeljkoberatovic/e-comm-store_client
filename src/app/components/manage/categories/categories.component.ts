@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 
 
+
+
 @Component({
   selector: 'app-categories',
   imports: [MatFormFieldModule,
@@ -63,7 +65,7 @@ export class CategoriesComponent {
   }
 
   delete(id: string) {
-    console.log(id);
+    //console.log(id);
     this.categoryService.deleteCategoryById(id).subscribe((result: any) => {
       alert("Category Deleted!");
       this.getServerData(); 
