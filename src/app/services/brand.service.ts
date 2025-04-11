@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { environment } from '../environments/environment.development';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,24 +11,26 @@ export class BrandService {
 
   constructor() { }
 
+  private apiUrl = environment.apiUrl + '/brand'; // Korišćenje API URL-a iz environment fajla
+
   getBrands() {
-    return this.http.get("http://localhost:3000/brand");
+    return this.http.get(this.apiUrl);
   }
   
   getBrandById(id: string) {
-    return this.http.get("http://localhost:3000/brand/" + id);
+    return this.http.get(`${this.apiUrl}/${id}`);
   }
   
   addBrand(name: string) {
-    return this.http.post("http://localhost:3000/brand", { name: name });
+    return this.http.post(this.apiUrl, { name: name });
   }
   
   updateBrand(id: string, name: string) {
-    return this.http.put("http://localhost:3000/brand/" + id, { name: name });
+    return this.http.put(`${this.apiUrl}/${id}`, { name: name });
   }
   
   deleteBrandById(id: string) {
-    return this.http.delete("http://localhost:3000/brand/" + id);
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
   
 }
