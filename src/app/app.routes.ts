@@ -4,6 +4,8 @@ import { CategoriesComponent } from './components/manage/categories/categories.c
 import { CategoryFormComponent } from './components/manage/category-form/category-form.component';
 import { BrandsComponent } from './components/manage/brands/brands.component';
 import { BrandFormComponent } from './components/manage/brand-form/brand-form.component';
+import { ProductsComponent } from './components/manage/products/products.component';
+import { ProductFormComponent } from './components/manage/product-form/product-form.component';
 
 export const routes: Routes = [
     {
@@ -37,4 +39,17 @@ export const routes: Routes = [
         component: BrandFormComponent,
     },
     
+    // Dodavanje ruta za proizvode
+    {
+        path: 'admin/products',
+        component: ProductsComponent,
+    },
+    {
+        path: 'admin/products/create',
+        component: ProductFormComponent,
+    },
+    {
+        path: 'admin/products/:id',
+        component: ProductFormComponent,
+    },
 ];
