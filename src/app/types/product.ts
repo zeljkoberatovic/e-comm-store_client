@@ -8,6 +8,6 @@ export interface Product {
   image: string;
   categoryId: string;
   createdAt?: string; 
-    updatedAt?: string;
+  updatedAt?: string;
   
 }

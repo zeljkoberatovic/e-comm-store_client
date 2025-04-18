@@ -45,7 +45,7 @@ export class ProductsComponent implements AfterViewInit {
   }
   private getServerData() {
     this.productService.getProducts().subscribe((result:any) => {
-      console.log(result);
+      //console.log(result);
     this.dataSource.data = result; 
     });
   }
