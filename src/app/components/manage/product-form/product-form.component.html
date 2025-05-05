@@ -1,0 +1,51 @@
+<div class="px-40 mt-10">
+    <mat-card>
+      <h2 class="text-2xl mb-6">{{ productId ? 'Edit Product' : 'Create Product' }}</h2>
+  
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="w-full mb-4">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+  
+        <mat-form-field class="w-full mb-4">
+          <mat-label>Short Description</mat-label>
+          <textarea matInput formControlName="shortDescription"></textarea>
+        </mat-form-field>
+  
+        <mat-form-field class="w-full mb-4">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="4"></textarea>
+        </mat-form-field>
+  
+        <mat-form-field class="w-full mb-4">
+          <mat-label>Price</mat-label>
+          <input matInput type="number" formControlName="price" />
+        </mat-form-field>
+  
+        <mat-form-field class="w-full mb-4">
+          <mat-label>Discount (%)</mat-label>
+          <input matInput type="number" formControlName="discount" />
+        </mat-form-field>
+  
+        <mat-form-field class="w-full mb-4">
+          <mat-label>Image URL (comma-separated)</mat-label>
+          <input matInput formControlName="images" />
+        </mat-form-field>
+  
+        <mat-form-field class="w-full mb-6">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="categoryId">
+            <mat-option *ngFor="let cat of categories" [value]="cat._id">
+              {{ cat.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <button mat-raised-button color="primary" type="submit">
+          {{ productId ? 'Update' : 'Create' }}
+        </button>
+      </form>
+    </mat-card>
+  </div>
+  
