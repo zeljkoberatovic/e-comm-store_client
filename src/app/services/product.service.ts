@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
+import { Observable } from 'rxjs';
+import { Product } from '../types/product';
 
 @Injectable({
   providedIn: 'root'
@@ -8,33 +10,35 @@ import { environment } from '../../environments/environment.development';
 export class ProductService {
   http = inject(HttpClient);
 
-  private apiUrl = `${environment.apiUrl}/product`;
-
   constructor() {}
 
-  // Get all products
-  getProducts() {
-    return this.http.get(`${this.apiUrl}`);
+  private apiUrl = `${environment.apiUrl}/product`;
+
+  
+
+  
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.apiUrl);   // Vraća listu proizvoda tipiziranu kao Product[]
   }
 
-  // Get one product by ID
-  getProductById(id: string) {
-    return this.http.get(`${this.apiUrl}/${id}`);
+ 
+  getProductById(id: string): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/${id}`);  // Vraća jedan proizvod tipiziran kao Product
   }
 
-  // Create product
-  addProduct(data: any) {
-    return this.http.post(`${this.apiUrl}`, data);
+ 
+  addProduct(data: Product): Observable<Product> {
+    return this.http.post<Product>(this.apiUrl, data);  // Šaljemo tipizirani proizvod kao telo zahteva
   }
 
-  // Update product
-  updateProduct(id: string, data: any) {
-    return this.http.put(`${this.apiUrl}/${id}`, data);
+  
+  updateProduct(id: string, data: Product): Observable<Product> {
+    return this.http.put<Product>(`${this.apiUrl}/${id}`, data);  // Ažuriramo proizvod po ID-u
   }
 
-  // Delete product
-  deleteProductById(id: string) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+ 
+  deleteProductById(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);  // Brisanje proizvoda po ID-u
   }
-
 }
+

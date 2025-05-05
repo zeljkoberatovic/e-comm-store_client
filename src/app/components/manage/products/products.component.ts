@@ -7,6 +7,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { ProductService } from '../../../services/product.service';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { Product } from '../../../types/product';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -22,13 +23,13 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ],
   templateUrl: './products.component.html',
-  styleUrl: './products.component.scss',
-  standalone: true
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['name', 'shortDescription', 'price', 'discount', 'categoryId', 'image', 'action'];
-  dataSource: MatTableDataSource<any>;
+  displayedColumns: string[] = ['id', 'name', 'price', 'discount', 'shortDescription',
+                                             'description', 'images', 'category', 'action'];
+  dataSource: MatTableDataSource<Product>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -36,17 +37,16 @@ export class ProductsComponent implements AfterViewInit {
   productService = inject(ProductService);
 
   constructor() {
-    this.dataSource = new MatTableDataSource([] as any);
+    this.dataSource = new MatTableDataSource<Product>([] as Product[]);
   }
 
-  
   ngOnInit() {
     this.getServerData();
   }
+
   private getServerData() {
-    this.productService.getProducts().subscribe((result:any) => {
-      //console.log(result);
-    this.dataSource.data = result; 
+    this.productService.getProducts().subscribe((result: Product[]) => {
+      this.dataSource.data = result; 
     });
   }
 
@@ -65,10 +65,9 @@ export class ProductsComponent implements AfterViewInit {
   }
 
   delete(id: string) {
-    this.productService.deleteProductById(id).subscribe((result: any) => {
-      alert('Product Deleted!');
-      this.getServerData();
+    this.productService.deleteProductById(id).subscribe(() => {
+      alert("Product Deleted!");
+      this.getServerData(); 
     });
   }
-
 }
