@@ -1,40 +1,39 @@
 <div class="px-40 mt-10">
-    <!-- Kondicionalni naslov za Update ili Add Category -->
-        <div class="flex justify-between items-center mb-6">
-          <h1 *ngIf="isEdit" class="text-3xl">Update Category</h1>
-          <h1 *ngIf="!isEdit" class="text-3xl">Add New Category</h1>
-          
-          <!-- Dugme za Back -->
-          <button mat-stroked-button color="warn" (click)="goBack()">Back</button>
-        </div>
-
-  
-    <form class="bg-white shadow-2xl rounded-xl p-8 space-y-6 z-10 ">
-      <!-- Category Name Input without vertical line -->
-      <mat-form-field class="w-full">
-          <mat-label>Category Name</mat-label>
-          <input
-            matInput
-            type="text" [(ngModel)]="name" name="name"
-            class="w-full focus:ring-0 focus:border-none"
-            placeholder="Enter category name"
-            required
-          />
-      </mat-form-field>
-  
-            <!-- Dugme za Add ili Update Category -->
-            <div class="flex justify-end">
-              <!-- Dugme za Add Category -->
-              <button *ngIf="!isEdit" mat-raised-button color="primary" class="px-6 py-2 rounded-lg" [disabled]="!name" (click)="add()">
-                Add Category
-              </button>
-
-              <!-- Dugme za Update Category -->
-              <button *ngIf="isEdit" mat-raised-button color="accent" class="px-6 py-2 rounded-lg" [disabled]="!name" (click)="update()">
-                Update Category
-              </button>
-          </div>
-
-      </form>
+  <!-- Naslov -->
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl">
+      {{ isEdit ? 'Update Category' : 'Add New Category' }}
+    </h1>
+    <button mat-stroked-button color="warn" (click)="goBack()">Back</button>
   </div>
-  
+
+  <!-- Forma -->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="bg-white shadow-2xl rounded-xl p-8 space-y-6 z-10">
+    <!-- Input za ime kategorije -->
+    <mat-form-field class="w-full">
+      <mat-label>Category Name</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="name"
+        placeholder="Enter category name"
+      />
+      <mat-error *ngIf="form.get('name')?.hasError('required')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Dugmad -->
+    <div class="flex justify-end">
+      <button
+        mat-raised-button
+        color="{{ isEdit ? 'accent' : 'primary' }}"
+        class="px-6 py-2 rounded-lg"
+        type="submit"
+        [disabled]="form.invalid"
+      >
+        {{ isEdit ? 'Update Category' : 'Add Category' }}
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,40 +1,35 @@
 <div class="px-40 mt-10">
-    <!-- Kondicionalni naslov za Update ili Add Brand -->
-        <div class="flex justify-between items-center mb-6">
-          <h1 *ngIf="isEdit" class="text-3xl">Update Brand</h1>
-          <h1 *ngIf="!isEdit" class="text-3xl">Add New Brand</h1>
-          
-          <!-- Dugme za Back -->
-          <button mat-stroked-button color="warn" (click)="goBack()">Back</button>
-        </div>
-
-  
-    <form class="bg-white shadow-2xl rounded-xl p-8 space-y-6 z-10 ">
-      <!-- Brand Name Input without vertical line -->
-      <mat-form-field class="w-full">
-          <mat-label>Brand Name</mat-label>
-          <input
-            matInput
-            type="text" [(ngModel)]="name" name="name"
-            class="w-full focus:ring-0 focus:border-none"
-            placeholder="Enter category name"
-            required
-          />
-      </mat-form-field>
-  
-            <!-- Dugme za Add ili Update Brand -->
-            <div class="flex justify-end">
-              <!-- Dugme za Add Brand -->
-              <button *ngIf="!isEdit" mat-raised-button color="primary" class="px-6 py-2 rounded-lg" [disabled]="!name" (click)="add()">
-                Add Brand
-              </button>
-
-              <!-- Dugme za Update Brand-->
-              <button *ngIf="isEdit" mat-raised-button color="accent" class="px-6 py-2 rounded-lg" [disabled]="!name" (click)="update()">
-                Update Brand
-              </button>
-          </div>
-
-      </form>
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl">
+      {{ isEdit ? 'Update Brand' : 'Add New Brand' }}
+    </h1>
+    <button mat-stroked-button color="warn" (click)="goBack()">Back</button>
   </div>
-  
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="bg-white shadow-2xl rounded-xl p-8 space-y-6 z-10">
+    <mat-form-field class="w-full">
+      <mat-label>Brand Name</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="name"
+        placeholder="Enter brand name"
+      />
+      <mat-error *ngIf="form.get('name')?.hasError('required')">
+        Brand name is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="flex justify-end">
+      <button
+        mat-raised-button
+        [color]="isEdit ? 'accent' : 'primary'"
+        class="px-6 py-2 rounded-lg"
+        type="submit"
+        [disabled]="form.invalid"
+      >
+        {{ isEdit ? 'Update Brand' : 'Add Brand' }}
+      </button>
+    </div>
+  </form>
+</div>
