@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './components/pages/home/home.component';
 import { CategoriesComponent } from './components/manage/categories/categories.component';
 import { CategoryFormComponent } from './components/manage/category-form/category-form.component';
 import { BrandsComponent } from './components/manage/brands/brands.component';

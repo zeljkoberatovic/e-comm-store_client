@@ -1,0 +1,124 @@
+/* Gornja linija (top bar) */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f8f8f8;
+
+  .logo a {
+    font-size: 24px;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 30%;
+    margin: 0 20px;
+
+    input {
+      width: 100%;
+      padding: 8px 12px;
+      padding-left: 30px; /* Pravimo prostor za ikonu unutar inputa */
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      color: #333;
+      font-size: 20px;
+    }
+  }
+
+  .profile a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+  }
+
+  .hamburger {
+    display: none; /* Po defaultu sakriva hamburger meni */
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+/* Donja navigacija */
+.bottom-nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  background-color: #333;
+  padding: 10px;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+
+    &.active {
+      border-bottom: 2px solid white;
+    }
+
+    &:hover {
+      color: #ccc;
+    }
+  }
+}
+
+/* Prilagodbe za mobilne uređaje (manje od 768px) */
+@media (max-width: 768px) {
+  .top-bar {
+    flex-wrap: wrap; /* Elementi u top-bar se prelamaju */
+    justify-content: space-between;
+
+    .logo {
+      order: 1;
+      flex: 1 0 100%; /* Logo ide prvo i širi se */
+      text-align: center;
+    }
+
+    .search-container {
+      order: 3;
+      width: 100%;
+      margin: 10px 0;
+      flex: 1 0 100%; /* Pretraga ide ispod sa širinom 100% */
+    }
+
+    .profile {
+      order: 2;
+      text-align: center;
+      flex: 1 0 100%; /* Profil ide ispod */
+    }
+
+    .hamburger {
+      display: block; /* Hamburger meni postaje vidljiv */
+      order: 4;
+      font-size: 30px;
+    }
+  }
+
+  /* Donja navigacija (bottom-nav) */
+  .bottom-nav {
+    display: none; /* Po defaultu skrivena */
+    flex-direction: column;
+    align-items: center;
+
+    &.open {
+      display: flex; /* Kada je meni otvoren, prikazuje se */
+    }
+
+    a {
+      padding: 10px 0;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
