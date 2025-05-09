@@ -1,36 +1,40 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-
+import { Observable } from 'rxjs';
+import { Brand } from '../types/brand';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BrandService {
   http = inject(HttpClient);
+  private apiUrl = environment.apiUrl + '/brand';
 
-  constructor() { }
+  constructor() {}
 
-  private apiUrl = environment.apiUrl + '/brand'; // Korišćenje API URL-a iz environment fajla
+  //  Vraća listu brendova
+  getBrands(): Observable<Brand[]> {
+    return this.http.get<Brand[]>(this.apiUrl);
+  }
 
-  getBrands() {
-    return this.http.get(this.apiUrl);
+  //  Vraća jedan brend po ID-u
+  getBrandById(id: string): Observable<Brand> {
+    return this.http.get<Brand>(`${this.apiUrl}/${id}`);
   }
-  
-  getBrandById(id: string) {
-    return this.http.get(`${this.apiUrl}/${id}`);
+
+  //  Dodaje brend, vraća kreirani objekat
+  addBrand(name: string): Observable<Brand> {
+    return this.http.post<Brand>(this.apiUrl, { name });
   }
-  
-  addBrand(name: string) {
-    return this.http.post(this.apiUrl, { name: name });
+
+  //  Ažurira brend
+  updateBrand(id: string, name: string): Observable<Brand> {
+    return this.http.put<Brand>(`${this.apiUrl}/${id}`, { name });
   }
-  
-  updateBrand(id: string, name: string) {
-    return this.http.put(`${this.apiUrl}/${id}`, { name: name });
+
+  //  Briše brend po ID-u
+  deleteBrandById(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-  
-  deleteBrandById(id: string) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
-  }
-  
 }

@@ -18,27 +18,27 @@ export class ProductService {
 
   
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl);   // Vraća listu proizvoda tipiziranu kao Product[]
+    return this.http.get<Product[]>(this.apiUrl);    
   }
 
  
   getProductById(id: string): Observable<Product> {
-    return this.http.get<Product>(`${this.apiUrl}/${id}`);  // Vraća jedan proizvod tipiziran kao Product
+    return this.http.get<Product>(`${this.apiUrl}/${id}`);  
   }
 
  
   addProduct(data: Product): Observable<Product> {
-    return this.http.post<Product>(this.apiUrl, data);  // Šaljemo tipizirani proizvod kao telo zahteva
+    return this.http.post<Product>(this.apiUrl, data);  
   }
 
   
   updateProduct(id: string, data: Product): Observable<Product> {
-    return this.http.put<Product>(`${this.apiUrl}/${id}`, data);  // Ažuriramo proizvod po ID-u
+    return this.http.put<Product>(`${this.apiUrl}/${id}`, data);  
   }
 
  
   deleteProductById(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);  // Brisanje proizvoda po ID-u
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);  
   }
 }
 

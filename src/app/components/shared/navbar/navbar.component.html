@@ -23,8 +23,11 @@
 <!-- Donja linija - navigacija -->
 <nav class="bottom-nav" [class.open]="menuOpen">
   <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-  <a routerLink="/products" routerLinkActive="active">Products</a>
-  <a routerLink="/cart" routerLinkActive="active">Cart</a>
-  <a routerLink="/about" routerLinkActive="active">About</a>
-  <a routerLink="/contact" routerLinkActive="active">Contact</a>
+
+   <!-- Učitavanje kategorija iz Observable-a uz async pipe -->
+  <ng-container *ngIf="categories | async as list">
+    <a *ngFor="let category of list" [routerLink]="['/products', category._id]" routerLinkActive="active">
+      {{ category.name }}
+    </a>
+  </ng-container>
 </nav>

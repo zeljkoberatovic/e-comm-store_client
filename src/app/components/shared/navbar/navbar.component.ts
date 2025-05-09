@@ -1,7 +1,9 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Category } from '../../../types/category';
 
 @Component({
   selector: 'app-navbar',
@@ -11,9 +13,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-[x: string]: any;
+  @Input() categories!: Observable<Category[]>;
 
-  
   menuOpen = false;
 
   toggleNav() {

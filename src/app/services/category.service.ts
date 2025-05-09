@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
+import { Observable } from 'rxjs';
+import { Category } from '../types/category';  
 
 @Injectable({
   providedIn: 'root'
@@ -8,29 +10,32 @@ import { environment } from '../../environments/environment.development';
 export class CategoryService {
   http = inject(HttpClient);
 
-  constructor() { }
-
-  // Definiši osnovni API URL
   private apiUrl = environment.apiUrl + '/category';
 
-  getCategories(){
-    return this.http.get(this.apiUrl);
+  constructor() {}
+
+  //  Vrati Observable liste kategorija
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.apiUrl);
   }
 
-  getCategoryById(id: string) {
-    return this.http.get(`${this.apiUrl}/${id}`);
+  // Vrati Observable jedne kategorije
+  getCategoryById(id: string): Observable<Category> {
+    return this.http.get<Category>(`${this.apiUrl}/${id}`);
   }
 
-  addCategory(name: string) {
-    return this.http.post(this.apiUrl, { name: name });
+  //  Dodavanje kategorije — vraća kreirani objekat kategorije
+  addCategory(name: string): Observable<Category> {
+    return this.http.post<Category>(this.apiUrl, { name });
   }
 
-  updateCategory(id: string, name: string) {
-    return this.http.put(`${this.apiUrl}/${id}`, { name: name });
+  //  Ažuriranje — vraća ažurirani objekat
+  updateCategory(id: string, name: string): Observable<Category> {
+    return this.http.put<Category>(`${this.apiUrl}/${id}`, { name });
   }
 
-  deleteCategoryById(id: string) {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  //  Brisanje — vraća prazan odgovor
+  deleteCategoryById(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-
 }
