@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Product } from '../../../types/product';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-product-form',
@@ -23,7 +24,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ],
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
@@ -47,7 +49,9 @@ export class ProductFormComponent implements OnInit {
       price: [0, [Validators.required, Validators.min(0)]],
       discount: [0, [Validators.min(0), Validators.max(100)]],
       images: [''],
-      categoryId: ['', Validators.required]
+      categoryId: ['', Validators.required],
+      isFeatured: [ false ],
+      isNewProduct: [ false]
     });
 
     this.categoryService.getCategories().subscribe((data: any) => {
