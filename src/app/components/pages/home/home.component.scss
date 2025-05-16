@@ -1,3 +1,8 @@
+.products-wrapper {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
 .section-title {
   font-size: 28px;
   margin: 40px 0 10px;
@@ -5,18 +10,12 @@
   color: #333;
   border-left: 6px solid #3f51b5;
   padding-left: 12px;
-}
-
-.section-divider {
-  border: none;
-  border-top: 2px solid #e0e0e0;
-  margin-bottom: 24px;
-  width: 100%;
+  margin-left: 8px; // pomeraj malo od leve ivice
 }
 
 .product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); // širina kartice
   gap: 18px 16px;
   padding-bottom: 40px;
 }
@@ -33,17 +32,24 @@
     cursor: pointer;
   }
 
+  img[mat-card-image] {
+    height: 160px;
+    width: 100%;
+    object-fit: cover;
+  }
+
   mat-card-title {
     font-size: 18px;
     font-weight: 600;
     margin-top: 10px;
+    margin-left: 6px;
   }
 
   .description {
     font-size: 13px;
     color: #666;
     margin: 6px 0 12px;
-    min-height: 36px; // da kartice budu jednake visine za opis
+    min-height: 36px; // da kartice budu ujednačene visine
   }
 
   .price {
@@ -57,13 +63,13 @@
   }
 
   .discount-price {
-    font-size: 17px;
+    font-size: 14px; // manji font za popust
     font-weight: 700;
     color: #d32f2f;
     margin-top: 5px;
 
     .discount-label {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 400;
       color: #555;
       margin-left: 6px;
@@ -75,7 +81,7 @@
     display: flex;
     justify-content: center;
 
-    .add-to-cart-btn {
+    button {
       display: inline-block;
       text-decoration: none;
       background-color: #3f51b5;
@@ -85,6 +91,7 @@
       font-weight: 600;
       font-size: 14px;
       transition: background-color 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
 
       &:hover {
         background-color: #303f9f;
