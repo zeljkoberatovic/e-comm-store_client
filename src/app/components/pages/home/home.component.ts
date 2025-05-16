@@ -1,4 +1,4 @@
-
+import { ChangeDetectorRef } from '@angular/core';
 import { CustomerService } from '../../../services/customer.service';
 import { Product } from '../../../types/product';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
@@ -7,15 +7,16 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-    standalone: true,
+  standalone: true,
   imports: [MatCardModule,CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
 
   customerService = inject(CustomerService);
+  cd = inject(ChangeDetectorRef);
+
   newProduct: Product[] = [];
   featuredProduct: Product[] = [];
 
@@ -36,7 +37,7 @@ export class HomeComponent {
 
 addToCart(product: Product) {
   console.log('Dodato u korpu:', product.name);
-  // Ovdje možeš dodati logiku za dodavanje u korpu
+  //ovdje dodajemo logiku za dodavanje u korpi proizvod
 }
 
 

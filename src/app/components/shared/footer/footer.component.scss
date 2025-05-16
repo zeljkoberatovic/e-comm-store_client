@@ -1,0 +1,61 @@
+.app-footer {
+  background-color: #222;
+  color: #eee;
+  padding: 30px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+
+    .footer-section {
+      flex: 1 1 200px;
+
+      h4 {
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: #f0a500;
+      }
+
+      p, ul {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #ccc;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      ul.social-links {
+        display: flex;
+        gap: 15px;
+
+        li a {
+          color: #ccc;
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.3s ease;
+
+          &:hover,
+          &:focus {
+            color: #f0a500;
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 13px;
+    color: #777;
+  }
+}
