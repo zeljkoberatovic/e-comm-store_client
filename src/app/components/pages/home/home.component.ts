@@ -4,11 +4,12 @@ import { Product } from '../../../types/product';
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { ProductCardComponent } from "../../manage/product-card/product-card.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatCardModule,CommonModule],
+  imports: [MatCardModule, CommonModule, ProductCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

@@ -10,93 +10,12 @@
   color: #333;
   border-left: 6px solid #3f51b5;
   padding-left: 12px;
-  margin-left: 8px; // pomeraj malo od leve ivice
+  margin-left: 8px;
 }
 
 .product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); // širina kartice
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 18px 16px;
   padding-bottom: 40px;
-}
-
-.product-card {
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: default;
-
-  &:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-  }
-
-  img[mat-card-image] {
-    height: 160px;
-    width: 100%;
-    object-fit: cover;
-  }
-
-  mat-card-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-top: 10px;
-    margin-left: 6px;
-  }
-
-  .description {
-    font-size: 13px;
-    color: #666;
-    margin: 6px 0 12px;
-    min-height: 36px; // da kartice budu ujednačene visine
-  }
-
-  .price {
-    font-size: 15px;
-    color: #333;
-
-    .discounted {
-      text-decoration: line-through;
-      color: #999;
-    }
-  }
-
-  .discount-price {
-    font-size: 14px; // manji font za popust
-    font-weight: 700;
-    color: #d32f2f;
-    margin-top: 5px;
-
-    .discount-label {
-      font-size: 12px;
-      font-weight: 400;
-      color: #555;
-      margin-left: 6px;
-    }
-  }
-
-  mat-card-actions {
-    margin-top: 14px;
-    display: flex;
-    justify-content: center;
-
-    button {
-      display: inline-block;
-      text-decoration: none;
-      background-color: #3f51b5;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 14px;
-      transition: background-color 0.25s ease, box-shadow 0.25s ease;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #303f9f;
-        box-shadow: 0 4px 12px rgba(63, 81, 181, 0.6);
-      }
-    }
-  }
 }
