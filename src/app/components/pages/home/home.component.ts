@@ -6,11 +6,13 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../../manage/product-card/product-card.component';
 import { SearchService } from '../../../services/search.service';
+import { ImageSliderComponent } from '../../shared/image-slider/image-slider.component';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatCardModule, CommonModule, ProductCardComponent],
+  imports: [MatCardModule, CommonModule, ProductCardComponent, ImageSliderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

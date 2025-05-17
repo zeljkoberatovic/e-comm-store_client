@@ -1,19 +1,22 @@
+<!-- Ubacena image-slider komponenta -->
+  <app-image-slider></app-image-slider>
+
 <div class="products-wrapper">
-  <h2 class="section-title">Rezultati pretrage</h2>
-  <div class="product-list" >
-    <app-product-card
-      *ngFor="let product of filteredProducts"
-      [product]="product"
-      (add)="addToCart($event)">
-    </app-product-card>
+ <h2 class="section-title">Featured Products</h2>
+   <div class="product-list" >
+       <app-product-card
+         *ngFor="let product of filteredProducts"
+         [product]="product"
+         (add)="addToCart($event)">
+       </app-product-card>
   </div>
 
   <h2 class="section-title">New Products</h2>
-  <div class="product-list">
-    <app-product-card
-      *ngFor="let product of filteredProducts"
-      [product]="product"
-      (add)="addToCart($event)">
-    </app-product-card>
-  </div>
+   <div class="product-list">
+      <app-product-card
+        *ngFor="let product of filteredProducts"
+        [product]="product"
+        (add)="addToCart($event)">
+      </app-product-card>
+    </div>
 </div>
