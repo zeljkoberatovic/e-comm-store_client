@@ -1,23 +1,19 @@
 <div class="products-wrapper">
-  <h2 class="section-title">Featured Products</h2>
-  <div class="product-list">
-
+  <h2 class="section-title">Rezultati pretrage</h2>
+  <div class="product-list" >
     <app-product-card
-      *ngFor="let product of featuredProduct"
+      *ngFor="let product of filteredProducts"
       [product]="product"
       (add)="addToCart($event)">
     </app-product-card>
-
   </div>
 
   <h2 class="section-title">New Products</h2>
   <div class="product-list">
-
     <app-product-card
-      *ngFor="let product of newProduct"
+      *ngFor="let product of filteredProducts"
       [product]="product"
       (add)="addToCart($event)">
     </app-product-card>
-
   </div>
 </div>

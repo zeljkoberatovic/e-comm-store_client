@@ -7,7 +7,7 @@
   <!-- Search bar sa ikonom -->
   <div class="search-container">
     <mat-icon class="search-icon">search</mat-icon> <!-- Angular Material Search ikona -->
-    <input type="text" placeholder="Search products..." />
+    <input type="text" placeholder="Search products..."(keyup.enter)="onSearch($event)" />
   </div>
 
   <div class="profile">
