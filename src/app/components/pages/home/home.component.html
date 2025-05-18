@@ -1,22 +1,44 @@
-<!-- Ubacena image-slider komponenta -->
-  <app-image-slider></app-image-slider>
 
-<div class="products-wrapper">
- <h2 class="section-title">Featured Products</h2>
-   <div class="product-list" >
-       <app-product-card
-         *ngFor="let product of filteredProducts"
-         [product]="product"
-         (add)="addToCart($event)">
-       </app-product-card>
+<app-image-slider></app-image-slider>
+
+<div *ngIf="isSearchActive" class="products-wrapper">
+  <h2 class="section-title">Search Results</h2>
+  <div class="product-list">
+    <app-product-card
+      *ngFor="let product of filteredProducts"
+      [product]="product"
+      (add)="addToCart($event)">
+    </app-product-card>
+  </div>
+</div>
+
+<!-- Inače prikaži Featured i New -->
+<div *ngIf="!isSearchActive" class="products-wrapper">
+
+  <!-- Featured Products -->
+  <h2 class="section-title">Featured Products</h2>
+  <div class="product-list">
+    <app-product-card
+      *ngFor="let product of displayedFeatured"
+      [product]="product"
+      (add)="addToCart($event)">
+    </app-product-card>
+  </div>
+  <div class="load-more-wrapper" *ngIf="displayedFeatured.length < featuredProduct.length">
+    <button (click)="loadMoreFeatured()" class="load-more-btn">View More</button>
   </div>
 
+  <!-- New Products -->
   <h2 class="section-title">New Products</h2>
-   <div class="product-list">
-      <app-product-card
-        *ngFor="let product of filteredProducts"
-        [product]="product"
-        (add)="addToCart($event)">
-      </app-product-card>
-    </div>
+  <div class="product-list">
+    <app-product-card
+      *ngFor="let product of displayedNew"
+      [product]="product"
+      (add)="addToCart($event)">
+    </app-product-card>
+  </div>
+  <div class="load-more-wrapper" *ngIf="displayedNew.length < newProduct.length">
+    <button (click)="loadMoreNew()" class="load-more-btn">View More</button>
+  </div>
+
 </div>
