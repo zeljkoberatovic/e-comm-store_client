@@ -45,12 +45,12 @@ export class RegisterComponent {
 
       this.authService.register(payload).subscribe({
         next: res => {
-          console.log('✅ Registracija uspešna:', res);
-          // Ovde možeš dodati redirect ili poruku korisniku
+          console.log(' Registracija uspešna:', res);
+          
         },
         error: err => {
-          console.error('❌ Greška pri registraciji:', err);
-          // Ovde možeš prikazati alert ili toast sa greškom
+          console.error(' Greška pri registraciji:', err);
+          
         }
       });
     } else {
