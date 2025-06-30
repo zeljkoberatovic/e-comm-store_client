@@ -6,6 +6,7 @@ import { BrandsComponent } from './components/manage/brands/brands.component';
 import { BrandFormComponent } from './components/manage/brand-form/brand-form.component';
 import { ProductsComponent } from './components/manage/products/products.component';
 import { ProductFormComponent } from './components/manage/product-form/product-form.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 export const routes: Routes = [
@@ -52,6 +53,11 @@ export const routes: Routes = [
     {
         path: 'admin/products/:id',
         component: ProductFormComponent,
+    },
+
+    {
+        path: 'register',
+        component: RegisterComponent
     }
     
 ];
