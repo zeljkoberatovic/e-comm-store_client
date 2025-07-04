@@ -15,8 +15,9 @@
 <!-- Inače prikaži Featured i New -->
 <div *ngIf="!isSearchActive" class="products-wrapper">
 
-  <!-- Featured Products -->
-  <h2 class="section-title">Featured Products</h2>
+ <!-- Featured Products -->
+<div class="section-block mb-12">
+  <h2 class="section-title mb-6 border-b border-gray-300 pb-2">Featured Products</h2>
   <div class="product-list">
     <app-product-card
       *ngFor="let product of displayedFeatured"
@@ -27,9 +28,11 @@
   <div class="load-more-wrapper" *ngIf="displayedFeatured.length < featuredProduct.length">
     <button (click)="loadMoreFeatured()" class="load-more-btn">View More</button>
   </div>
+</div>
 
-  <!-- New Products -->
-  <h2 class="section-title">New Products</h2>
+<!-- New Products -->
+<div class="section-block">
+  <h2 class="section-title mb-6 border-b border-gray-300 pb-2">New Products</h2>
   <div class="product-list">
     <app-product-card
       *ngFor="let product of displayedNew"
@@ -40,5 +43,4 @@
   <div class="load-more-wrapper" *ngIf="displayedNew.length < newProduct.length">
     <button (click)="loadMoreNew()" class="load-more-btn">View More</button>
   </div>
-
 </div>

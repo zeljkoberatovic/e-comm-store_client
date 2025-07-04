@@ -6,12 +6,24 @@
 
   <!-- Search bar sa ikonom -->
   <div class="search-container">
-    <mat-icon class="search-icon">search</mat-icon> <!-- Angular Material Search ikona -->
-    <input type="text" placeholder="Search products..."(keyup.enter)="onSearch($event)" />
+    <mat-icon class="search-icon">search</mat-icon> 
+    <input type="text" placeholder="Search products..." (keyup.enter)="onSearch($event)" />
   </div>
 
   <div class="profile">
-    <a routerLink="/profile">👤 Profile</a>
+    <ng-container *ngIf="korisnik$ | async as korisnik; else notLoggedIn">
+
+      <span class="welcome">
+                  Welcome <strong class="capitalize highlight-name">{{ korisnik.name }}</strong>
+      </span>
+
+      <button (click)="logout()" class="ml-4">Logout</button>
+    </ng-container>
+    
+    <ng-template #notLoggedIn>
+      <a routerLink="/login" class="ml-4">Login</a>
+      <a routerLink="/register" class="ml-4">Register</a>
+    </ng-template>
   </div>
 
   <!-- Hamburger ikonica -->
@@ -24,7 +36,7 @@
 <nav class="bottom-nav" [class.open]="menuOpen">
   <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
 
-   <!-- Učitavanje kategorija iz Observable-a uz async pipe -->
+  <!-- Kategorije -->
   <ng-container *ngIf="categories | async as list">
     <a *ngFor="let category of list" [routerLink]="['/products', category._id]" routerLinkActive="active">
       {{ category.name }}

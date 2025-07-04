@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +13,15 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
+  public router = inject(Router);
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   });
 
-  onSubmit() {
+  
+onSubmit() {
   if (this.loginForm.valid) {
     const email = (this.loginForm.value.email ?? '').trim();
     const password = (this.loginForm.value.password ?? '').trim();
@@ -26,7 +29,11 @@ export class LoginComponent {
     this.authService.login({ email, password }).subscribe({
       next: res => {
         console.log('Prijava uspešna:', res);
-        // redirect ili obrada tokena
+
+        // Dodaj OVO:
+        this.authService.setLoggedInUser(res.user); // <<< KLJUČNA LINIJA
+
+        this.router.navigate(['/']);
       },
       error: err => {
         console.error('Greška pri prijavi:', err);
@@ -36,5 +43,6 @@ export class LoginComponent {
     this.loginForm.markAllAsTouched();
   }
 }
+
 
 }
