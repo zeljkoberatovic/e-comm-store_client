@@ -30,8 +30,8 @@ onSubmit() {
       next: res => {
         console.log('Prijava uspešna:', res);
 
-        // Dodaj OVO:
-        this.authService.setLoggedInUser(res.user); // <<< KLJUČNA LINIJA
+        
+        this.authService.setLoggedInUser(res.user); 
 
         this.router.navigate(['/']);
       },

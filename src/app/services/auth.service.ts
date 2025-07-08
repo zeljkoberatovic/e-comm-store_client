@@ -17,6 +17,7 @@ export interface LoginPayload {
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000/auth';

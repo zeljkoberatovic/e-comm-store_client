@@ -6,8 +6,6 @@ import { BrandsComponent } from './components/manage/brands/brands.component';
 import { BrandFormComponent } from './components/manage/brand-form/brand-form.component';
 import { ProductsComponent } from './components/manage/products/products.component';
 import { ProductFormComponent } from './components/manage/product-form/product-form.component';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
 
 
 export const routes: Routes = [
@@ -58,11 +56,11 @@ export const routes: Routes = [
 
     {
         path: 'register',
-        component: RegisterComponent
+        loadComponent: () => import('./components/register/register.component').then(m => m.RegisterComponent)
     }, 
     {
         path: 'login',
-        component: LoginComponent
+        loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent)
     }
     
 ];
