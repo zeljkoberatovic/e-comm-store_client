@@ -6,6 +6,7 @@ import { BrandsComponent } from './components/manage/brands/brands.component';
 import { BrandFormComponent } from './components/manage/brand-form/brand-form.component';
 import { ProductsComponent } from './components/manage/products/products.component';
 import { ProductFormComponent } from './components/manage/product-form/product-form.component';
+import { AdminDashboardComponent } from './components/manage/admin-dashboard/admin-dashboard.component';
 
 
 export const routes: Routes = [
@@ -13,6 +14,10 @@ export const routes: Routes = [
         path: "",
         component: HomeComponent,
     },
+    {
+        path: 'admin/dashboard',
+        component: AdminDashboardComponent,
+    }, 
     {
         path: 'admin/categories',
         component: CategoriesComponent,
@@ -61,6 +66,8 @@ export const routes: Routes = [
     {
         path: 'login',
         loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent)
-    }
+    },
+
+    
     
 ];
