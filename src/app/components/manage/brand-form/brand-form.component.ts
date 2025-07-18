@@ -55,12 +55,12 @@ export class BrandFormComponent implements OnInit {
     if (this.isEdit && this.id) {
       this.brandService.updateBrand(this.id, name).subscribe(() => {
         alert("Brand updated successfully!");
-        this.router.navigateByUrl("/admin/brands");
+        this.router.navigateByUrl("/admin/dashboard/brands");
       });
     } else {
       this.brandService.addBrand(name).subscribe(() => {
         alert("Brand added successfully!");
-        this.router.navigateByUrl("/admin/brands");
+        this.router.navigateByUrl("/admin/dashboard/brands");
       });
     }
   }

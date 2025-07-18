@@ -73,12 +73,12 @@ export class ProductFormComponent implements OnInit {
     if (this.productId) {
       this.productService.updateProduct(this.productId, productData).subscribe(() => {
         alert('Product updated!');
-        this.router.navigate(['/admin/products']);
+        this.router.navigate(['/admin/dashboard/products']);
       });
     } else {
       this.productService.addProduct(productData).subscribe(() => {
         alert('Product created!');
-        this.router.navigate(['/admin/products']);
+        this.router.navigate(['/admin/dashboard/products']);
       });
     }
   }

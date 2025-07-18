@@ -1,10 +1,16 @@
+<div class="flex h-screen">
 
-<div class="flex justify-around p-10">
+  <!-- Sidebar -->
+  <nav class="w-64 bg-gray-100 p-6 flex flex-col gap-4 shadow-md">
+    <button mat-raised-button routerLink="/admin/dashboard/categories">Manage Category</button>
+    <button mat-raised-button routerLink="/admin/dashboard/products">Manage Product</button>
+    <button mat-raised-button routerLink="/admin/dashboard/brands">Manage Brand</button>
 
-    <button mat-raised-button routerLink="/admin/categories">Manage Category</button>
-    <button mat-raised-button routerLink="/admin/products">Manage Product</button>
-    <button mat-raised-button routerLink="/admin/brands">Manage Brand</button>
+  </nav>
+
+  <!-- Glavni sadržaj -->
+  <main class="flex-1 p-6 overflow-auto">
+    <router-outlet></router-outlet>
+  </main>
 
 </div>
-    
-    

@@ -1,7 +1,7 @@
 <div class="px-40 mt-10">
    <div class="flex justify-between">
     <h1 class="text-3xl mb-4">Manage Category</h1>
-    <button mat-raised-button color="accent" routerLink="/admin/categories/create">Add New Category</button>
+    <button mat-raised-button color="accent" routerLink="/admin/dashboard/categories/create">Add New Category</button>
    </div>
     <div class="shadow">
         <mat-form-field class="w-full">
@@ -29,7 +29,7 @@
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                 <td mat-cell *matCellDef="let row"> 
-                    <button mat-button color="accent" [routerLink]="'/admin/categories/' + row._id">Edit</button>
+                    <button mat-button color="accent" [routerLink]="'/admin/dashboard/categories/' + row._id">Edit</button>
                     <button mat-button color="warn" (click)="delete(row._id)">Delete</button>
                  </td>
             </ng-container>

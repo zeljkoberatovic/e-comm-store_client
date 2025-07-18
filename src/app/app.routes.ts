@@ -10,64 +10,63 @@ import { AdminDashboardComponent } from './components/manage/admin-dashboard/adm
 
 
 export const routes: Routes = [
-    {
-        path: "",
-        component: HomeComponent,
-    },
-    {
-        path: 'admin/dashboard',
-        component: AdminDashboardComponent,
-    }, 
-    {
-        path: 'admin/categories',
+  {
+    path: "",
+    component: HomeComponent,
+  },
+  {
+    path: 'admin/dashboard',
+    component: AdminDashboardComponent,
+    children: [
+      {
+        path: 'categories',
         component: CategoriesComponent,
-    },
-    {
-        path: 'admin/categories/create',
+      },
+      {
+        path: 'categories/create',
         component: CategoryFormComponent,
-    },
-    {
-        path: 'admin/categories/:id',
+      },
+      {
+        path: 'categories/:id',
         component: CategoryFormComponent,
-    },
-
-    // Dodavanje ruta za brendove
-    {
-        path: 'admin/brands',
+      },
+      {
+        path: 'brands',
         component: BrandsComponent,
-    },
-    {
-        path: 'admin/brands/create',
+      },
+      {
+        path: 'brands/create',
         component: BrandFormComponent,
-    },
-    {
-        path: 'admin/brands/:id',
+      },
+      {
+        path: 'brands/:id',
         component: BrandFormComponent,
-    },
-    
-    // Dodavanje ruta za proizvode
-    {
-        path: 'admin/products',
+      },
+      {
+        path: 'products',
         component: ProductsComponent,
-    },
-    {
-        path: 'admin/products/create',
+      },
+      {
+        path: 'products/create',
         component: ProductFormComponent,
-    },
-    {
-        path: 'admin/products/:id',
+      },
+      {
+        path: 'products/:id',
         component: ProductFormComponent,
-    },
-
-    {
-        path: 'register',
-        loadComponent: () => import('./components/register/register.component').then(m => m.RegisterComponent)
-    }, 
-    {
-        path: 'login',
-        loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent)
-    },
-
-    
-    
+      },
+      {
+        path: '',
+        redirectTo: 'categories',
+        pathMatch: 'full',
+      },
+    ],
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./components/register/register.component').then(m => m.RegisterComponent)
+  }, 
+  {
+    path: 'login',
+    loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent)
+  },
 ];

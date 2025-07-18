@@ -7,6 +7,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { CategoryService } from '../../../services/category.service';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -19,7 +20,8 @@ import { RouterLink } from '@angular/router';
             MatSortModule,
             MatPaginatorModule,
             MatButtonModule,
-            RouterLink],
+            RouterLink,
+            CommonModule],
 
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'

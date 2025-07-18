@@ -3,4 +3,5 @@
 
 <router-outlet></router-outlet>
 
-<app-footer></app-footer>
+<!-- Footer se prikazuje samo ako nismo na admin ruti -->
+<app-footer *ngIf="!isAdminRoute()"></app-footer>

@@ -32,13 +32,17 @@ onSubmit() {
 
         
         this.authService.setLoggedInUser(res.user); 
-
-        this.router.navigate(['/']);
+        if (res.user.isAdmin) {
+          this.router.navigate(['/admin/dashboard']);
+        } else {
+          this.router.navigate(['/']);
+        }
       },
       error: err => {
         console.error('Greška pri prijavi:', err);
       }
     });
+        
   } else {
     this.loginForm.markAllAsTouched();
   }

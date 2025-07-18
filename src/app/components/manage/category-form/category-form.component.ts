@@ -55,12 +55,12 @@ export class CategoryFormComponent implements OnInit {
     if (this.isEdit && this.id) {
       this.categoryService.updateCategory(this.id, name).subscribe(() => {
         alert("Category updated successfully!");
-        this.router.navigateByUrl("/admin/categories");
+        this.router.navigateByUrl("/admin/dashboard/categories");
       });
     } else {
       this.categoryService.addCategory(name).subscribe(() => {
         alert("Category added successfully!");
-        this.router.navigateByUrl("/admin/categories");
+        this.router.navigateByUrl("/admin/dashboard/categories");
       });
     }
   }
