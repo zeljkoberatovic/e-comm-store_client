@@ -1,15 +1,70 @@
-<div class="flex h-screen">
+<div class="flex min-h-screen">
 
   <!-- Sidebar -->
-  <nav class="w-64 bg-gray-100 p-6 flex flex-col gap-4 shadow-md">
-    <button mat-raised-button routerLink="/admin/dashboard/categories">Manage Category</button>
-    <button mat-raised-button routerLink="/admin/dashboard/products">Manage Product</button>
-    <button mat-raised-button routerLink="/admin/dashboard/brands">Manage Brand</button>
+  <nav class="bg-gray-100 w-64 shadow-md h-screen overflow-y-auto">
+    <div class="flex flex-col">
 
+      <a
+        routerLink="/admin/dashboard/categories"
+        routerLinkActive="bg-gray-300 text-gray-900"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="flex items-center px-6 py-3 text-base text-gray-800 border-b border-gray-400 w-full text-left hover:bg-gray-200 transition-colors duration-200"
+      >
+        <svg
+          class="w-5 h-5 mr-3 text-gray-600"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" />
+        </svg>
+        Manage Category
+      </a>
+
+      <a
+        routerLink="/admin/dashboard/products"
+        routerLinkActive="bg-gray-300 text-gray-900"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="flex items-center px-6 py-3 text-base text-gray-800 border-b border-gray-400 w-full text-left hover:bg-gray-200 transition-colors duration-200"
+      >
+        <svg
+          class="w-5 h-5 mr-3 text-gray-600"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 8l-4 8m0-8l4 8" />
+        </svg>
+        Manage Product
+      </a>
+
+      <a
+        routerLink="/admin/dashboard/brands"
+        routerLinkActive="bg-gray-300 text-gray-900"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="flex items-center px-6 py-3 text-base text-gray-800 border-b border-gray-400 w-full text-left hover:bg-gray-200 transition-colors duration-200"
+      >
+        <svg
+          class="w-5 h-5 mr-3 text-gray-600"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 8l-4 8m0-8l4 8" />
+        </svg>
+        Manage Brand
+      </a>
+
+    </div>
   </nav>
 
   <!-- Glavni sadržaj -->
-  <main class="flex-1 p-6 overflow-auto">
+  <main class="flex-1 min-h-screen overflow-auto pt-2.5">
     <router-outlet></router-outlet>
   </main>
 
