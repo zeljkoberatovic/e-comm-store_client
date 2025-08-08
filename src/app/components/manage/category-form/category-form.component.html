@@ -17,23 +17,25 @@
         type="text"
         formControlName="name"
         placeholder="Enter category name"
-      />
-      <mat-error *ngIf="form.get('name')?.hasError('required')">
-        Name is required
-      </mat-error>
-    </mat-form-field>
+        />
+        @if (form.get('name')?.hasError('required')) {
+          <mat-error>
+            Name is required
+          </mat-error>
+        }
+      </mat-form-field>
 
-    <!-- Dugmad -->
-    <div class="flex justify-end">
-      <button
-        mat-raised-button
-        color="{{ isEdit ? 'accent' : 'primary' }}"
-        class="px-6 py-2 rounded-lg"
-        type="submit"
-        [disabled]="form.invalid"
-      >
-        {{ isEdit ? 'Update Category' : 'Add Category' }}
-      </button>
-    </div>
-  </form>
-</div>
+      <!-- Dugmad -->
+      <div class="flex justify-end">
+        <button
+          mat-raised-button
+          color="{{ isEdit ? 'accent' : 'primary' }}"
+          class="px-6 py-2 rounded-lg"
+          type="submit"
+          [disabled]="form.invalid"
+          >
+          {{ isEdit ? 'Update Category' : 'Add Category' }}
+        </button>
+      </div>
+    </form>
+  </div>

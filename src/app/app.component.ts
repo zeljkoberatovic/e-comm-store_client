@@ -1,7 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { CommonModule, NgIf } from '@angular/common';
+
 
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
@@ -14,9 +14,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     MatButtonModule,
     RouterModule,
     HeaderComponent,
-    FooterComponent,
-    CommonModule
-  ],
+    FooterComponent
+],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

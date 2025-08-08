@@ -1,10 +1,11 @@
 <mat-card class="product-card">
-  <img
-    mat-card-image
-    [src]="product.images[0]"
-    alt="{{ product.name }}"
-    *ngIf="product.images?.length"
-  />
+  @if (product.images?.length) {
+    <img
+      mat-card-image
+      [src]="product.images[0]"
+      alt="{{ product.name }}"
+      />
+  }
   <mat-card-title>{{ product.name }}</mat-card-title>
   <mat-card-content>
     <p class="description">{{ product.shortDescription }}</p>
@@ -16,11 +17,13 @@
       </span>
     </p>
 
-    <p *ngIf="product.discount > 0" class="discount-price">
-      Cena sa popustom:
-      {{ getDiscountedPrice(product) | currency:'EUR':'symbol':'1.2-2':'en-US' }}
-      <span class="discount-label">({{ product.discount }}% popust)</span>
-    </p>
+    @if (product.discount > 0) {
+      <p class="discount-price">
+        Cena sa popustom:
+        {{ getDiscountedPrice(product) | currency:'EUR':'symbol':'1.2-2':'en-US' }}
+        <span class="discount-label">({{ product.discount }}% popust)</span>
+      </p>
+    }
   </mat-card-content>
 
   <mat-card-actions>

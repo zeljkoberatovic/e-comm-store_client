@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { CategoryService } from '../../../services/category.service';
-import { CommonModule } from '@angular/common';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -17,7 +17,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   selector: 'app-product-form',
   standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -26,7 +25,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCardModule,
     MatIconModule,
     MatCheckboxModule
-  ],
+],
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })

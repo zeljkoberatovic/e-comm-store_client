@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { CommonModule, Location } from '@angular/common';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BrandService } from '../../../services/brand.service';
 
@@ -10,11 +10,10 @@ import { BrandService } from '../../../services/brand.service';
   selector: 'app-brand-form',
   standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule
-  ],
+],
   templateUrl: './brand-form.component.html',
   styleUrls: ['./brand-form.component.scss']
 })

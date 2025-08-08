@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { CommonModule, Location } from '@angular/common';
+import { Location } from '@angular/common';
 import { CategoryService } from '../../../services/category.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,11 +10,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-category-form',
   standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule
-  ],
+],
   templateUrl: './category-form.component.html',
   styleUrls: ['./category-form.component.scss']
 })

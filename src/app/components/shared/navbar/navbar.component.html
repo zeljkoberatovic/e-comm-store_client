@@ -6,24 +6,21 @@
 
   <!-- Search bar sa ikonom -->
   <div class="search-container">
-    <mat-icon class="search-icon">search</mat-icon> 
+    <mat-icon class="search-icon">search</mat-icon>
     <input type="text" placeholder="Search products..." (keyup.enter)="onSearch($event)" />
   </div>
 
   <div class="profile">
-    <ng-container *ngIf="korisnik$ | async as korisnik; else notLoggedIn">
-
+    @if (user$ | async; as user) {
       <span class="welcome">
-                  Welcome <strong class="capitalize highlight-name">{{ korisnik.name }}</strong>
+        Welcome <strong class="capitalize highlight-name">{{ user.name }}</strong>
       </span>
-
       <button (click)="logout()" class="ml-4">Logout</button>
-    </ng-container>
-    
-    <ng-template #notLoggedIn>
+    } @else {
       <a routerLink="/login" class="ml-4">Login</a>
       <a routerLink="/register" class="ml-4">Register</a>
-    </ng-template>
+    }
+
   </div>
 
   <!-- Hamburger ikonica -->
@@ -37,9 +34,11 @@
   <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
 
   <!-- Kategorije -->
-  <ng-container *ngIf="categories | async as list">
-    <a *ngFor="let category of list" [routerLink]="['/products', category._id]" routerLinkActive="active">
-      {{ category.name }}
-    </a>
-  </ng-container>
+  @if (categories | async; as list) {
+    @for (category of list; track category) {
+      <a [routerLink]="['/products', category._id]" routerLinkActive="active">
+        {{ category.name }}
+      </a>
+    }
+  }
 </nav>

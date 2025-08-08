@@ -14,22 +14,24 @@
         type="text"
         formControlName="name"
         placeholder="Enter brand name"
-      />
-      <mat-error *ngIf="form.get('name')?.hasError('required')">
-        Brand name is required
-      </mat-error>
-    </mat-form-field>
+        />
+        @if (form.get('name')?.hasError('required')) {
+          <mat-error>
+            Brand name is required
+          </mat-error>
+        }
+      </mat-form-field>
 
-    <div class="flex justify-end">
-      <button
-        mat-raised-button
-        [color]="isEdit ? 'accent' : 'primary'"
-        class="px-6 py-2 rounded-lg"
-        type="submit"
-        [disabled]="form.invalid"
-      >
-        {{ isEdit ? 'Update Brand' : 'Add Brand' }}
-      </button>
-    </div>
-  </form>
-</div>
+      <div class="flex justify-end">
+        <button
+          mat-raised-button
+          [color]="isEdit ? 'accent' : 'primary'"
+          class="px-6 py-2 rounded-lg"
+          type="submit"
+          [disabled]="form.invalid"
+          >
+          {{ isEdit ? 'Update Brand' : 'Add Brand' }}
+        </button>
+      </div>
+    </form>
+  </div>

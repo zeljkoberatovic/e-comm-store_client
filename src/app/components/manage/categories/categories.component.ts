@@ -7,21 +7,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { CategoryService } from '../../../services/category.service';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 
 
 
 
 @Component({
   selector: 'app-categories',
-  imports: [MatFormFieldModule,
-            MatInputModule,
-            MatTableModule,
-            MatSortModule,
-            MatPaginatorModule,
-            MatButtonModule,
-            RouterLink,
-            CommonModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatButtonModule, RouterLink],
 
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'

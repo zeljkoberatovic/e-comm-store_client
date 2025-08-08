@@ -1,16 +1,18 @@
-import { CommonModule, NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { CommonModule, AsyncPipe } from '@angular/common';
 import { Component, Input, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Category } from '../../../types/category';
 import { SearchService } from '../../../services/search.service';
 import { AuthService } from '../../../services/auth.service';
 
+
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterModule, MatIconModule, CommonModule, NgIf, NgFor, AsyncPipe],
+  imports: [RouterModule, MatIconModule, CommonModule, AsyncPipe],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
@@ -20,8 +22,9 @@ export class NavbarComponent {
 
   private searchService = inject(SearchService);
   private authService = inject(AuthService);
+  private router = inject(Router);
 
-  korisnik$ = this.authService.loggedInUser$;
+  user$ = this.authService.loggedInUser$;
 
   toggleNav() {
     this.menuOpen = !this.menuOpen;
@@ -34,5 +37,6 @@ export class NavbarComponent {
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/']);
   }
 }
