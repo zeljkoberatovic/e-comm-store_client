@@ -1,53 +1,45 @@
-import {AfterViewInit, Component, inject, ViewChild} from '@angular/core';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatSort, MatSortModule} from '@angular/material/sort';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { CategoryService } from '../../../services/category.service';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 import { BrandService } from '../../../services/brand.service';
-
-
-
 
 @Component({
   selector: 'app-brands',
-  imports: [MatFormFieldModule,
-            MatInputModule,
-            MatTableModule,
-            MatSortModule,
-            MatPaginatorModule,
-            MatButtonModule,
-            RouterLink],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    RouterLink
+  ],
   templateUrl: './brands.component.html',
   styleUrl: './brands.component.scss'
 })
-export class BrandsComponent {
+export class BrandsComponent implements AfterViewInit {
   displayedColumns: string[] = ['id', 'name', 'action'];
-  dataSource: MatTableDataSource<any>;
+  dataSource = new MatTableDataSource<any>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  brandService = inject(BrandService);
-  
-
-  constructor() {
-
-    this.dataSource = new MatTableDataSource([] as any);
-
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private brandService: BrandService
+  ) {}
 
   ngOnInit() {
-    this.getServerData();
-  }
-  private getServerData() {
-    this.brandService.getBrands().subscribe((result:any) => {
-      //console.log(result);
-    this.dataSource.data = result; 
-    });
+    // Preuzimamo podatke iz CommonResolver-a
+    this.dataSource.data = this.route.snapshot.data['data'];
   }
 
   ngAfterViewInit() {
@@ -65,13 +57,12 @@ export class BrandsComponent {
   }
 
   delete(id: string) {
-    //console.log(id);
-    this.brandService.deleteBrandById(id).subscribe((result: any) => {
-      alert("Brand Deleted!");
-      this.getServerData(); 
-    })
+    this.brandService.deleteBrandById(id).subscribe(() => {
+      alert('Brand Deleted!');
+      // Ručno dohvaćanje nakon brisanja
+      this.brandService.getBrands().subscribe(result => {
+        this.dataSource.data = result;
+      });
+    });
   }
-  
-
-
 }

@@ -1,14 +1,17 @@
-import {AfterViewInit, Component, inject, ViewChild} from '@angular/core';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatSort, MatSortModule} from '@angular/material/sort';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { ProductService } from '../../../services/product.service';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute } from '@angular/router';
 import { Product } from '../../../types/product';
 import { CommonModule } from '@angular/common';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -26,28 +29,32 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements AfterViewInit {
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'price',
+    'discount',
+    'shortDescription',
+    'description',
+    'images',
+    'category',
+    'action'
+  ];
 
-  displayedColumns: string[] = ['id', 'name', 'price', 'discount', 'shortDescription',
-                                             'description', 'images', 'category', 'action'];
-  dataSource: MatTableDataSource<Product>;
+  dataSource = new MatTableDataSource<Product>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  productService = inject(ProductService);
-
-  constructor() {
-    this.dataSource = new MatTableDataSource<Product>([] as Product[]);
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {}
 
   ngOnInit() {
-    this.getServerData();
-  }
-
-  private getServerData() {
-    this.productService.getProducts().subscribe((result: Product[]) => {
-      this.dataSource.data = result; 
-    });
+    // Umjesto HTTP poziva, koristimo resolver
+    const products = this.route.snapshot.data['data'] as Product[];
+    this.dataSource.data = products;
   }
 
   ngAfterViewInit() {
@@ -66,8 +73,11 @@ export class ProductsComponent implements AfterViewInit {
 
   delete(id: string) {
     this.productService.deleteProductById(id).subscribe(() => {
-      alert("Product Deleted!");
-      this.getServerData(); 
+      alert('Product Deleted!');
+      // Ponovno dohvaćanje — može ići direktno iz servisa
+      this.productService.getProducts().subscribe((result: Product[]) => {
+        this.dataSource.data = result;
+      });
     });
   }
 }
